@@ -1,0 +1,8 @@
+/wrangler.toml
+/pkg
+.serverless
+.env
+*.log
+node_modules/
+dist/
+worker/

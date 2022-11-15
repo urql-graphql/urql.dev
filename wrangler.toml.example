@@ -1,0 +1,9 @@
+compatibility_date = "2022-11-15"
+name = "urql-dev"
+account_id = "$CF_ACCOUNT_ID"
+zone_id = "$CF_ZONE_ID"
+send_metrics = false
+
+[env.production]
+webpack_config = "config/webpack.config.js"
+route = "urql.dev/*"
