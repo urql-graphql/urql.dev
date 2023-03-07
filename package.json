@@ -6,6 +6,7 @@
   "author": "0no.co <hi@0no.co>",
   "license": "MIT",
   "scripts": {
+    "dev": "wrangler dev src/index.ts",
     "publish": "wrangler publish -e production"
   },
   "dependencies": {
