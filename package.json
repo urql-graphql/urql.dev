@@ -5,9 +5,10 @@
   "description": "urql.dev worker",
   "author": "0no.co <hi@0no.co>",
   "license": "MIT",
+  "main": "src/index.ts",
   "scripts": {
-    "dev": "wrangler dev src/index.ts",
-    "publish": "wrangler publish -e production"
+    "dev": "wrangler dev",
+    "deploy": "wrangler publish -e production"
   },
   "dependencies": {
     "common-tags": "^1.8.2",

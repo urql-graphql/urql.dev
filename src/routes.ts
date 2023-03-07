@@ -19,14 +19,16 @@ router.options('*', async () => {
   });
 });
 
-router.get('/', async () => {
+function redirect(url: string) {
+  const { origin } = new URL(url);
+
   const body = html`
     <html lang="en">
       <head>
         <meta charset="utf-8" />
-        <meta http-equiv="refresh" content="0; URL=https://github.com/urql-graphql/urql" />
-        <link rel="canonical" href="https://github.com/urql-graphql/urql" />
-        <link rel="preconnect" href="https://github.com" crossorigin />
+        <meta http-equiv="refresh" content="0; URL=${url}" />
+        <link rel="canonical" href="${url}" />
+        <link rel="preconnect" href="${origin}" crossorigin />
         <title>urql-graphql/urql</title>
       </head>
     </html>
@@ -37,9 +39,18 @@ router.get('/', async () => {
     headers: {
       ...env.HTML_HEADERS,
       'cache-control': env.SHORT_CACHE_CONTROL,
-      location: 'https://github.com/urql-graphql/urql',
+      location: url,
     }
   });
+}
+
+
+router.get('/', async () => {
+  return redirect('https://github.com/urql-graphql/urql');
+});
+
+router.get('/discord', async () => {
+  return redirect('https://discord.gg/NzUrbgz2dP');
 });
 
 router.get('/goto/:tag/', gotoHandler);
