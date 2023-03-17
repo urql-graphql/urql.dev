@@ -6,7 +6,8 @@ import { RouteHandler } from '../types';
 import { getCanonicalUrl } from '../utils/getCanonicalUrl';
 
 export const gotoHandler: RouteHandler = async (params) => {
-  const { tag } = params;
+  const tag = params[0];
+  console.log(tag);
   if (!tag || typeof tag !== 'string') {
     throw error(400);
   }
@@ -15,8 +16,9 @@ export const gotoHandler: RouteHandler = async (params) => {
 
   if (/^\d+$/.test(tag)) {
     location = await getCanonicalUrl(`https://github.com/urql-graphql/urql/issues/${tag}`);
-  } else if (tag === 'docs') {
-    location = 'https://formidable.com/open-source/urql/docs/';
+  } else if (tag.startsWith('docs')) {
+    location = 'https://formidable.com/open-source/urql/' + tag;
+    if (!location.endsWith('/')) location += '/';
   }
 
   if (!location) {

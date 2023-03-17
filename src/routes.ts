@@ -53,7 +53,6 @@ router.get('/discord', async () => {
   return redirect('https://discord.gg/NzUrbgz2dP');
 });
 
-router.get('/goto/:tag/', gotoHandler);
-router.get('/goto/:tag', gotoHandler);
+router.get('/goto/(.*)', gotoHandler);
 
 export { router };
