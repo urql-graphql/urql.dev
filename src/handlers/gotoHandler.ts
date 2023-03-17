@@ -17,8 +17,10 @@ export const gotoHandler: RouteHandler = async (params) => {
   if (/^\d+$/.test(tag)) {
     location = await getCanonicalUrl(`https://github.com/urql-graphql/urql/issues/${tag}`);
   } else if (tag.startsWith('docs')) {
-    location = 'https://formidable.com/open-source/urql/' + tag;
-    if (!location.endsWith('/')) location += '/';
+    let [pathname, hash] = tag.split('#');
+    if (!pathname.endsWith('/')) pathname += '/';
+    location = `https://formidable.com/open-source/urql/${pathname}` +
+      (hash ? `#${hash}` : '');
   }
 
   if (!location) {
